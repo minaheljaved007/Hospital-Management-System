@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Hospital Managment System (wxWidgets)",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "${workspaceFolder}/App.cpp",
+        "${workspaceFolder}/MainFrame.cpp",
+        "-o",
+        "${workspaceFolder}/HMS.exe",
+        "-I",
+        "C:/wxWidgets-3.3.2/include",
+        "-I",
+        "C:/wxWidgets-3.3.2/lib/gcc_dll/mswu",
+        "-L",
+        "C:/wxWidgets-3.3.2/lib/gcc_dll",
+        "-lwxmsw33u_core",
+        "-lwxbase33u",
+        "-lwxmsw33u_adv",
+        "-lwxmsw33u_aui",
+        "-lwxmsw33u_propgrid",
+        "-std=c++17",
+        "-Wall",
+        "-mwindows"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
+

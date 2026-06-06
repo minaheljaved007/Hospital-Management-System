@@ -1,0 +1,10 @@
+1|Dr. Ahmed Raza|45|M|03001112233|House 3 Cantt Lahore|Cardiology|MBBS FCPS|15|9AM-5PM|Cardiology
+2|Dr. Fatima Malik|38|F|03111112233|Flat 9 Johar Town Lahore|Endocrinology|MBBS MRCP|10|10AM-6PM|Internal Medicine
+3|Dr. Bilal Qureshi|50|M|03211112233|Street 2 Shadman Lahore|Neurology|MBBS FRCP|20|8AM-4PM|Neurology
+4|Dr. Nadia Hussain|42|F|03311112233|House 7 DHA Lahore|General Surgery|MBBS FRCS|12|9AM-3PM|Surgery
+5|Dr. Imran Shah|55|M|03411112233|Block C Model Town Lahore|Orthopedics|MBBS MS Ortho|25|8AM-2PM|Orthopedics
+6|Dr. Sana Iqbal|35|F|03511112233|House 14 Gulberg Lahore|Gynecology|MBBS FCPS Gynae|8|11AM-7PM|Gynecology
+7|Dr. Hamza Farooq|47|M|03611112233|Street 5 Garden Town Lahore|Urology|MBBS FCPS Urology|17|10AM-4PM|Urology
+8|Dr. Rabia Tariq|39|F|03711112233|Flat 3 Cantt Lahore|Dermatology|MBBS MCPS Derma|9|9AM-5PM|Dermatology
+9|Dr. Salman Butt|52|M|03811112233|House 21 Iqbal Town Lahore|Gastroenterology|MBBS FCPS|22|8AM-3PM|Gastroenterology
+10|Dr. Amna Zahid|33|F|03911112233|Block A Samanabad Lahore|Pediatrics|MBBS DCH FCPS|6|10AM-6PM|Pediatrics

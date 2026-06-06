@@ -1,0 +1,23 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "windows-clang-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}",
+        "C:/wxWidgets-3.3.2/include",
+        "C:/wxWidgets-3.3.2/include/wx/msw"
+      ],
+      "defines": [
+        "__WXMSW__",
+        "_UNICODE",
+        "WXUSINGDLL"
+      ],
+      "compilerPath": "C:/msys64/ucrt64/bin/g++.exe",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "windows-clang-x64"
+    }
+  ]
+}

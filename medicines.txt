@@ -1,0 +1,10 @@
+3001|Paracetamol 500mg|Analgesic/Antipyretic|GSK Pakistan|25.00|200|12/2026
+3002|Amoxicillin 500mg|Antibiotic|Pfizer Pakistan|85.00|150|06/2026
+3003|Metformin 500mg|Antidiabetic|Getz Pharma|45.00|180|09/2026
+3004|Ibuprofen 400mg|NSAID Painkiller|Abbott Pakistan|35.00|8|03/2026
+3005|Omeprazole 20mg|Proton Pump Inhibitor|Searle Pakistan|60.00|120|11/2026
+3006|Azithromycin 500mg|Antibiotic|Highnoon Labs|110.00|90|08/2026
+3007|Cetirizine 10mg|Antihistamine|OBS Pakistan|30.00|160|07/2026
+3008|Amlodipine 5mg|Antihypertensive|ICI Pakistan|55.00|5|05/2026
+3009|Atorvastatin 20mg|Statin/Cholesterol|Sami Pharma|95.00|100|10/2026
+3010|Salbutamol Inhaler|Bronchodilator|GSK Pakistan|350.00|40|04/2027
