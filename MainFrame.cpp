@@ -282,7 +282,11 @@ wxPanel* MainFrame::BuildPatientsPage(wxWindow* parent)
     m_txtPName    = MakeField(formPanel, wxT("Full Name"));
     m_txtPAge     = MakeField(formPanel, wxT("Age"));
     m_choPGender  = new wxChoice(formPanel, wxID_ANY);
-    m_choPGender->Append({wxT("Male"), wxT("Female"), wxT("Other")});
+    wxArrayString genderChoices;
+    genderChoices.Add(wxT("Male"));
+    genderChoices.Add(wxT("Female"));
+    genderChoices.Add(wxT("Other"));
+    m_choPGender->Append(genderChoices);
     m_choPGender->SetSelection(0);
     m_choPGender->SetBackgroundColour(CLR_INPUT_BG);
     m_choPGender->SetForegroundColour(CLR_TEXT);
@@ -290,7 +294,16 @@ wxPanel* MainFrame::BuildPatientsPage(wxWindow* parent)
     m_txtPAddress = MakeField(formPanel, wxT("Address"));
     m_txtPDisease = MakeField(formPanel, wxT("Diagnosis / Disease"));
     m_choPBlood   = new wxChoice(formPanel, wxID_ANY);
-    m_choPBlood->Append({wxT("A+"),wxT("A-"),wxT("B+"),wxT("B-"),wxT("AB+"),wxT("AB-"),wxT("O+"),wxT("O-")});
+    wxArrayString bloodChoices;
+    bloodChoices.Add(wxT("A+"));
+    bloodChoices.Add(wxT("A-"));
+    bloodChoices.Add(wxT("B+"));
+    bloodChoices.Add(wxT("B-"));
+    bloodChoices.Add(wxT("AB+"));
+    bloodChoices.Add(wxT("AB-"));
+    bloodChoices.Add(wxT("O+"));
+    bloodChoices.Add(wxT("O-"));
+    m_choPBlood->Append(bloodChoices);
     m_choPBlood->SetSelection(0);
     m_choPBlood->SetBackgroundColour(CLR_INPUT_BG);
     m_choPBlood->SetForegroundColour(CLR_TEXT);
@@ -392,7 +405,10 @@ wxPanel* MainFrame::BuildDoctorsPage(wxWindow* parent)
     m_txtDName    = MakeField(formPanel, wxT("Full Name (Dr. ...)"));
     m_txtDAge     = MakeField(formPanel, wxT("Age"));
     m_choDGender  = new wxChoice(formPanel, wxID_ANY);
-    m_choDGender->Append({wxT("Male"), wxT("Female")});
+    wxArrayString doctorGenderChoices;
+    doctorGenderChoices.Add(wxT("Male"));
+    doctorGenderChoices.Add(wxT("Female"));
+    m_choDGender->Append(doctorGenderChoices);
     m_choDGender->SetSelection(0);
     m_choDGender->SetBackgroundColour(CLR_INPUT_BG);
     m_choDGender->SetForegroundColour(CLR_TEXT);
@@ -489,7 +505,11 @@ wxPanel* MainFrame::BuildAppointmentsPage(wxWindow* parent)
     m_txtATime    = MakeField(formPanel, wxT("Time (e.g. 10:30 AM)"));
     m_txtADisease = MakeField(formPanel, wxT("Reason / Disease"));
     m_choAStatus  = new wxChoice(formPanel, wxID_ANY);
-    m_choAStatus->Append({wxT("Pending"), wxT("Completed"), wxT("Cancelled")});
+    wxArrayString appointmentStatusChoices;
+    appointmentStatusChoices.Add(wxT("Pending"));
+    appointmentStatusChoices.Add(wxT("Completed"));
+    appointmentStatusChoices.Add(wxT("Cancelled"));
+    m_choAStatus->Append(appointmentStatusChoices);
     m_choAStatus->SetSelection(0);
     m_choAStatus->SetBackgroundColour(CLR_INPUT_BG);
     m_choAStatus->SetForegroundColour(CLR_TEXT);
@@ -579,7 +599,10 @@ wxPanel* MainFrame::BuildBillingPage(wxWindow* parent)
     AddFormRow(fSz, formPanel, wxT("Other"),          m_txtBOther);
 
     // Auto-calculate on text change
-    auto calcFn = [this](wxCommandEvent&){ OnBillCalc(wxCommandEvent{}); };
+    auto calcFn = [this](wxCommandEvent&){
+        wxCommandEvent calcEvent;
+        OnBillCalc(calcEvent);
+    };
     m_txtBConsult->Bind(wxEVT_TEXT, calcFn);
     m_txtBMed->Bind(wxEVT_TEXT, calcFn);
     m_txtBRoom->Bind(wxEVT_TEXT, calcFn);
@@ -1378,7 +1401,8 @@ void MainFrame::OnPatientAdd(wxCommandEvent&)
     {
         wxMessageBox(wxString::Format(wxT("Patient '%s' added successfully!"), name),
                      wxT("Success"), wxOK | wxICON_INFORMATION);
-        OnPatientClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnPatientClear(clearEvent);
         RefreshPatientList();
         RefreshDashboard();
     }
@@ -1417,7 +1441,8 @@ void MainFrame::OnPatientUpdate(wxCommandEvent&)
     {
         RewritePatients(records);
         wxMessageBox(wxT("Patient record updated successfully!"), wxT("Updated"), wxOK | wxICON_INFORMATION);
-        OnPatientClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnPatientClear(clearEvent);
         RefreshPatientList();
     }
 }
@@ -1441,7 +1466,8 @@ void MainFrame::OnPatientDelete(wxCommandEvent&)
                   records.end());
     RewritePatients(records);
     wxMessageBox(wxT("Patient deleted."), wxT("Deleted"), wxOK | wxICON_INFORMATION);
-    OnPatientClear(wxCommandEvent{});
+    wxCommandEvent clearEvent;
+    OnPatientClear(clearEvent);
     RefreshPatientList();
     RefreshDashboard();
     m_selPatient = -1;
@@ -1535,7 +1561,8 @@ void MainFrame::OnDoctorAdd(wxCommandEvent&)
     if (SaveDoctor(d)) {
         wxMessageBox(wxString::Format(wxT("Doctor '%s' added successfully!"), d.name),
                      wxT("Success"), wxOK | wxICON_INFORMATION);
-        OnDoctorClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnDoctorClear(clearEvent);
         RefreshDoctorList();
         RefreshDashboard();
     }
@@ -1567,7 +1594,8 @@ void MainFrame::OnDoctorUpdate(wxCommandEvent&)
     }
     RewriteDoctors(records);
     wxMessageBox(wxT("Doctor record updated."), wxT("Updated"), wxOK | wxICON_INFORMATION);
-    OnDoctorClear(wxCommandEvent{});
+    wxCommandEvent clearEvent;
+    OnDoctorClear(clearEvent);
     RefreshDoctorList();
 }
 
@@ -1585,7 +1613,8 @@ void MainFrame::OnDoctorDelete(wxCommandEvent&)
                                   [id](const DoctorRecord& d){ return d.id == id; }), records.end());
     RewriteDoctors(records);
     wxMessageBox(wxT("Doctor deleted."), wxT("Deleted"), wxOK | wxICON_INFORMATION);
-    OnDoctorClear(wxCommandEvent{});
+    wxCommandEvent clearEvent;
+    OnDoctorClear(clearEvent);
     RefreshDoctorList();
     RefreshDashboard();
     m_selDoctor = -1;
@@ -1661,7 +1690,8 @@ void MainFrame::OnApptAdd(wxCommandEvent&)
     }
     if (SaveAppointment(a)) {
         wxMessageBox(wxT("Appointment booked successfully!"), wxT("Success"), wxOK | wxICON_INFORMATION);
-        OnApptClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnApptClear(clearEvent);
         RefreshAppointmentList();
     }
 }
@@ -1768,7 +1798,8 @@ void MainFrame::OnBillGenerate(wxCommandEvent&)
             wxT("Bill generated!\n\nPatient: %s\nTotal: Rs. %.2f\nStatus: Unpaid"),
             b.patientName, b.total),
             wxT("Bill Generated"), wxOK | wxICON_INFORMATION);
-        OnBillClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnBillClear(clearEvent);
         RefreshBillList();
         RefreshDashboard();
     }
@@ -1820,7 +1851,8 @@ void MainFrame::OnPharmaAdd(wxCommandEvent&)
     if (SaveMedicine(m)) {
         wxMessageBox(wxString::Format(wxT("Medicine '%s' added to pharmacy!"), name),
                      wxT("Success"), wxOK | wxICON_INFORMATION);
-        OnPharmaClear(wxCommandEvent{});
+        wxCommandEvent clearEvent;
+        OnPharmaClear(clearEvent);
         RefreshMedicineList();
     }
 }

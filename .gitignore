@@ -1,0 +1,18 @@
+# Compiled binaries
+*.exe
+*.dll
+
+# Build and log files
+*.log
+build-fixed.log
+build-full.log
+clang-build.log
+clang-final.log
+clang-fixed.log
+database-compile.log
+mainframe-compile.log
+app-compile.log
+
+# Extracted dependencies
+mysql-connector-cpp.zip
+mysql-connector-cpp-extracted/

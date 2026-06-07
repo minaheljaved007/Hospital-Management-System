@@ -10,12 +10,14 @@
 #include <stdexcept>
 
 // MySQL Connector/C++ headers
+#ifdef USE_MYSQL_DB
 #include <mysql_driver.h>
 #include <mysql_connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 #include <cppconn/exception.h>
+#endif
 
 // ──────────────────────────────────────────────────────────
 //  Data structs that mirror your existing plain-text records
@@ -133,8 +135,13 @@ private:
     Database(const Database&)            = delete;
     Database& operator=(const Database&) = delete;
 
+#ifdef USE_MYSQL_DB
     sql::mysql::MySQL_Driver* m_driver     = nullptr;
     sql::Connection*          m_conn       = nullptr;
+#else
+    void*                     m_driver     = nullptr;
+    void*                     m_conn       = nullptr;
+#endif
     std::string               m_lastError;
 
     void setError(const std::string& msg) { m_lastError = msg; }

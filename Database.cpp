@@ -15,6 +15,8 @@ Database& Database::instance() {
     return db;
 }
 
+#ifdef USE_MYSQL_DB
+
 // ──────────────────────────────────────────────────────────
 //  Connect / Disconnect
 // ──────────────────────────────────────────────────────────
@@ -590,3 +592,95 @@ std::vector<DBBill> Database::getAllBills() {
     }
     return result;
 }
+
+#else // USE_MYSQL_DB
+
+bool Database::connect() {
+    setError("Database compiled without MySQL support.");
+    return false;
+}
+
+void Database::disconnect() {}
+
+bool Database::isConnected() const {
+    return false;
+}
+
+bool Database::createTablesIfNotExist() {
+    return false;
+}
+
+bool Database::addPatient(const DBPatient& p) {
+    return false;
+}
+
+bool Database::updatePatient(const DBPatient& p) {
+    return false;
+}
+
+bool Database::deletePatient(int id) {
+    return false;
+}
+
+std::vector<DBPatient> Database::getAllPatients() {
+    return {};
+}
+
+DBPatient Database::getPatientById(int id) {
+    return {};
+}
+
+bool Database::addDoctor(const DBDoctor& d) {
+    return false;
+}
+
+bool Database::updateDoctor(const DBDoctor& d) {
+    return false;
+}
+
+bool Database::deleteDoctor(int id) {
+    return false;
+}
+
+std::vector<DBDoctor> Database::getAllDoctors() {
+    return {};
+}
+
+DBDoctor Database::getDoctorById(int id) {
+    return {};
+}
+
+bool Database::addAppointment(const DBAppointment& a) {
+    return false;
+}
+
+bool Database::updateAppointment(const DBAppointment& a) {
+    return false;
+}
+
+bool Database::deleteAppointment(int id) {
+    return false;
+}
+
+std::vector<DBAppointment> Database::getAllAppointments() {
+    return {};
+}
+
+bool Database::addBill(const DBBill& b) {
+    return false;
+}
+
+bool Database::updateBill(const DBBill& b) {
+    return false;
+}
+
+bool Database::deleteBill(int id) {
+    return false;
+}
+
+std::vector<DBBill> Database::getAllBills() {
+    return {};
+}
+
+#endif // USE_MYSQL_DB
+
